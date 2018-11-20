@@ -1,0 +1,2 @@
+# blackjack
+Oliot-teeman projekti
