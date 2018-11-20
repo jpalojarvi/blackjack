@@ -1,5 +1,5 @@
 package blackjack;
-public class View // purpose similar to Naytto.java
+public class View // purpose similar to Naytto.java example
 {
     
 }
