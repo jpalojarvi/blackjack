@@ -6,10 +6,7 @@
 package Blackjack;
 import java.util.Random;
 
-/**
- *
- * @author Mkayyee
- */
+
 public class Deck {
     
     
