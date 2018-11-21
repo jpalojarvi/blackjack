@@ -9,10 +9,6 @@ package Blackjack;
 import static Blackjack.Deck.deal;
 import java.util.Scanner;
 
-/**
- *
- * @author Mkayyee
- */
 public class Game extends Hand {
     
     static Scanner lukija = new Scanner(System.in);
