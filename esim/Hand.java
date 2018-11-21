@@ -13,27 +13,24 @@ public class Hand extends Deck {
     
     int value;
     char cString;
-    int playervalue;
-    int dealervalue;
-    int bigcards;
     String wholehand;
     int totalvalue;
     
-
-    public void getHand(){
+    
+    public void getHand(){              // tulostaa käden String -muodossa
         System.out.println(wholehand);
     }
-    public void addHand(String x){
+    public void addHand(String x){      // lisää kortin jo olemassa olevien joukkoon
         wholehand = wholehand + " "+x;
     }
-    public void pAddTotal(int add){
+    public void pAddTotal(int add){     // ei tällä hetkellä mitään käyttöä, ehkä tarpeellinen
         totalvalue = totalvalue + add;
     }
-    public int GetTotal(){
+    public int GetTotal(){              // palauttaa käden arvon summan
         return totalvalue;
     }
-    public void addValue(String card){
-        
+    public void addValue(String card){  // ottaa ekan merkin kortista ja muuntaa sen str muotoon, jos kuvakortti -> 
+                                        // lisää käden summaan 10, muuten parseroi suoraan intiksi ja lisää käden summaan            
         cString = card.charAt(0);
         String cardo = String.valueOf(cString);
         
