@@ -13,15 +13,16 @@ public class Hand extends Deck {
     
     int value;
     char cString;
-    String wholehand;
+    private List<String> wholehand = new ArrayList();
     int totalvalue;
     
     
-    public void getHand(){              // tulostaa käden String -muodossa
-        System.out.println(wholehand);
+    public void getHand(){              // tulostaa koko käden
+        for (String hand : wholehand)    
+            System.out.print(hand+" "); 
     }
-    public void addHand(String x){      // lisää kortin jo olemassa olevien joukkoon
-        wholehand = wholehand + " "+x;
+    public void addHand(String x){   // lisää kortin jo olemassa olevien joukkoon
+        wholehand.add(x)
     }
     public void pAddTotal(int add){     // ei tällä hetkellä mitään käyttöä, ehkä tarpeellinen
         totalvalue = totalvalue + add;
