@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  * toteutettu pääosin JOptionPane-avulla.
  *
  */
-public class View {
+public class View extends Game {
 
     // tieto kontrollerista, jolle näyttö lähettää pyynnöt
 
@@ -39,7 +39,7 @@ public class View {
                 rules();
                 break;
             case 3:
-                balance();
+                // balance(); ehkä myöhemmin panos-systeemi?
                 break;
             case 4:
                 quit();
@@ -63,6 +63,17 @@ public class View {
         JOptionPane.showMessageDialog(null, message);
     }
     
+    public void showQuestion(String message) {
+        // Parametrina näytettävä viesti
+        String choiceStr = JOptionPane.showInputDialog(message);
+        int choice = Integer.parseInt(choiceStr);
+        if (choice == 1) {
+            controller.hit();
+        }
+        else {
+            controller.stand();
+        }
+    }
     /*
     public void balance() {
         // pyydetään kontrolleria hoitamaan toiminto, 
