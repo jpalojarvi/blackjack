@@ -1,13 +1,16 @@
 package blackjack;
 
+
 /**
  *
  * @author Johannes Palojärvi <johannes.palojarvi@metropolia.fi>
  */
-public class Controller {
+public class Controller extends Game {
     // kapseloidut ominaisuudet (V, M)
     private View view;
     // private Hand hand;
+    
+    Game aloitusnäyttö = new Game();
     
     public Controller() {
         // Nyt kontrollerin (C) konstruktori (eli tämä metodi) 
@@ -66,7 +69,10 @@ public class Controller {
     */
     
     public void play() {
-        // game logic goes here? need card pack first. 
+        // pelilogiikka tänne?
+        // startgame();
+        // askplayerhitorstand();
+        // ifHit jne....??
         
     }
     
