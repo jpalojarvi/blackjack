@@ -1,16 +1,12 @@
 package blackjack;
 
 
-/**
- *
- * @author Johannes Palojärvi <johannes.palojarvi@metropolia.fi>
- */
 public class Controller extends Game {
     // kapseloidut ominaisuudet (V, M)
     private View view;
     // private Hand hand;
     
-    Game aloitusnäyttö = new Game();
+    Game startgame;
     
     public Controller() {
         // Nyt kontrollerin (C) konstruktori (eli tämä metodi) 
@@ -28,8 +24,11 @@ public class Controller extends Game {
         // tämä komponentti itse (this).
         view.setController(this); 
         
+        startgame = new Game();
         // pyydetään näyttöä esittämään aloitusnäyttö
         view.startMenu();
+        
+        
                         
     }
     
@@ -73,10 +72,19 @@ public class Controller extends Game {
         // startgame();
         // askplayerhitorstand();
         // ifHit jne....??
+        view.showMessage("Starting the game!");
+        String vastaus = startgame.startGame(); 
+        view.showQuestion(vastaus);
+    }
+    
+    public void hit() { // pelaajalle annetaan yksi kortti lisää
+        
+    }
+        
+    public void stand() { // pelaaja on lopettanut 
         
     }
     
-            
     // Koko sovelluksen käynnistäminen
     public static void main(String[] args) {
         // luodaan uusi kontrolleri-olio, joka valmistelee nyt sovelluksen
