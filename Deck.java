@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Blackjack;
+package blackjack;
 import java.util.Random;
 
 
@@ -15,7 +15,7 @@ public class Deck {
                             "2s","3s","4s","5s","6s","7s","8s","9s","Ts","Js","Qs","Ks","As",
                             "2c","3c","4c","5c","6c","7c","8c","9c","Tc","Jc","Qc","Kc","Ac"};
     
-    public static String deal(){
+    public String deal(){
         int idx = new Random().nextInt(deck.length);
         String hand = (deck[idx]);
         return hand;
