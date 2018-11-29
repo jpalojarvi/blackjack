@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class Game {
     
-    private Deck pakka;
-    private Hand playerhand;
-    private Hand dealerhand;
+    public Deck pakka;
+    public Hand playerhand;
+    public Hand dealerhand;
     
-    // private View view;
+    private View view;
     // static Scanner lukija = new Scanner(System.in);
     
     public String startGame() {
@@ -41,20 +41,88 @@ public class Game {
         dealerhand.addHand(z);
         dealerhand.addValue(z);
         
+        if (playerhand.GetTotal() == 21) {
+            
+            return("blackjack");
+                    }
+        
+        else if (playerhand.GetTotal() > 21) {
+            return("bust");
+            
+                    }
+        else {
         return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
-                "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal() + 
+                "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal() +
                 "\n. 1. Hit vai 2. Stand ?");
-}
+        }
+    }
     public String Hit() {
         String x = pakka.deal();
         playerhand.addHand(x);
         playerhand.addValue(x);
         
+        if (playerhand.GetTotal() > 21) {
+            
+            return ("Bust! Your hand is " + playerhand.getHand() + " " + playerhand.GetTotal() + ". Want to play again? (y/n)");
+        }
+        
+        
+        else {    
+            
+        }
         return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
                 "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal() + 
                 "\n. 1. Hit vai 2. Stand ?");
         
     }
+    
+    public String Stand(){
+        
+        String x = pakka.deal();
+        dealerhand.addHand(x);
+        dealerhand.addValue(x);
+        
+        if (dealerhand.GetTotal()>playerhand.GetTotal() && dealerhand.GetTotal()<17){
+            return("House wins."+" Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal()+" Dealer has Blackjack, house wins.");     
+            
+        }else if (dealerhand.GetTotal()<playerhand.GetTotal()){
+            while (dealerhand.GetTotal()<playerhand.GetTotal() && dealerhand.GetTotal()<21){
+            String y = pakka.deal();
+            dealerhand.addHand(y);
+            dealerhand.addValue(y);
+                if (dealerhand.GetTotal()>21){
+                    return ("You win!" +" Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal());
+                
+            }
+                else if (dealerhand.GetTotal()==21){
+                    return ("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal()+" Dealer has Blackjack, house wins.");
+            }
+            
+            }
+        }
+            
+    return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal());     
+    }
+    
+    public void gamestate() {
+        while (playerhand.GetTotal() < 21) {
+            view.showQuestion("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal() + 
+                "\n. 1. Hit vai 2. Stand ?");
+        }
+        
+        if (playerhand.GetTotal() > 21) {
+            view.showMessage("hävisit");;
+                }
+        else {
+                view.showMessage("Blackjack!");
+                }
+    }
+    
     /* public static void main (String args[]){
         
         // 2 ekaa korttii molemmille defaulttina ennen while looppia - lisätään niiden arvot luotuihin olioihin,
@@ -135,4 +203,3 @@ public class Game {
 
         
     
-
