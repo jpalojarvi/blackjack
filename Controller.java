@@ -86,11 +86,18 @@ public class Controller extends Game {
     public void hit() { // pelaajalle annetaan yksi kortti lisää
         String hittered = startgame.Hit();
         view.showQuestion(hittered);
+        gamestate();
     }
         
     public void stand() { // pelaaja on lopettanut 
-        
+        String stood = startgame.Stand();
+        view.showQuestion(stood);
     }
+    
+    public void question(String message) {
+        view.showMessage(message);
+    }
+
     
     // Koko sovelluksen käynnistäminen
     public static void main(String[] args) {
