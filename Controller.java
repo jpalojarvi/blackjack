@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package blackjack;
 
 
@@ -7,6 +12,7 @@ public class Controller extends Game {
     // private Hand hand;
     
     Game startgame;
+    
     
     public Controller() {
         // Nyt kontrollerin (C) konstruktori (eli tämä metodi) 
@@ -78,7 +84,8 @@ public class Controller extends Game {
     }
     
     public void hit() { // pelaajalle annetaan yksi kortti lisää
-        
+        String hittered = startgame.Hit();
+        view.showQuestion(hittered);
     }
         
     public void stand() { // pelaaja on lopettanut 
@@ -88,8 +95,7 @@ public class Controller extends Game {
     // Koko sovelluksen käynnistäminen
     public static void main(String[] args) {
         // luodaan uusi kontrolleri-olio, joka valmistelee nyt sovelluksen
-        new Controller();
+        Controller controller = new Controller();
         
     }
-}
-
+} 
