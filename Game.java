@@ -8,27 +8,53 @@ package blackjack;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author Mkayyee
+ */
 public class Game {
     
+    private Deck pakka;
     private Hand playerhand;
     private Hand dealerhand;
+    
     // private View view;
     // static Scanner lukija = new Scanner(System.in);
     
     public String startGame() {
+        
+        pakka = new Deck();
+        String x = pakka.deal();
+        String y = pakka.deal();
+        String z = pakka.deal();
+        
         playerhand = new Hand();
         dealerhand = new Hand();
         // jaetaan aloituskortit pelaajalle
-        playerhand.addHand();
-        playerhand.addHand();
+        playerhand.addHand(x);
+        playerhand.addHand(y);
+        
+        playerhand.addValue(x);
+        playerhand.addValue(y);
         
         // jaetaan yksi kortti jakajalle
-        dealerhand.addHand();
+        dealerhand.addHand(z);
+        dealerhand.addValue(z);
         
         return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
                 "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal() + 
                 "\n. 1. Hit vai 2. Stand ?");
 }
+    public String Hit() {
+        String x = pakka.deal();
+        playerhand.addHand(x);
+        playerhand.addValue(x);
+        
+        return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal() + 
+                "\n. 1. Hit vai 2. Stand ?");
+        
+    }
     /* public static void main (String args[]){
         
         // 2 ekaa korttii molemmille defaulttina ennen while looppia - lisätään niiden arvot luotuihin olioihin,
@@ -106,9 +132,7 @@ public class Game {
         
         } */
 }
+
         
-        
-    
     
 
-    
