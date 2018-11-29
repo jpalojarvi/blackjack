@@ -1,0 +1,31 @@
+public String Stand(){
+        
+        String x = pakka.deal();
+        dealerhand.addHand(x);
+        dealerhand.addValue(x);
+        
+        if (dealerhand.GetTotal()>playerhand.GetTotal() && dealerhand.GetTotal()<17){
+            return("House wins."+" Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal()+" Dealer has Blackjack, house wins.");     
+            
+        }else if (dealerhand.GetTotal()<playerhand.GetTotal()){
+            while (dealerhand.GetTotal()<playerhand.GetTotal() && dealerhand.GetTotal()<21){
+            String y = pakka.deal();
+            dealerhand.addHand(y);
+            dealerhand.addValue(y);
+                if (dealerhand.GetTotal()>21){
+                    return ("You win!" +" Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal());
+                
+            }
+                else if (dealerhand.GetTotal()==21){
+                    return ("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal()+" Dealer has Blackjack, house wins.");
+            }
+            
+            }
+        }
+            
+    return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal());     
+    }
