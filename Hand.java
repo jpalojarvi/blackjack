@@ -32,8 +32,10 @@ public class Hand {
     public void dealerFirstValue(){
         System.out.print(value);
     }
-    public void addHand(){
-        wholehand.add(pakka.deal());
+    public String addHand(String x){
+       wholehand.add(x);
+       return x;
+        
     }
     public void pAddTotal(int add){
         totalvalue = totalvalue + add;
@@ -86,3 +88,4 @@ public class Hand {
         return value;
     }
 }
+
