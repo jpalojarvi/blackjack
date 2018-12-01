@@ -59,8 +59,9 @@ public class Game {
         
         //tästä eteenpäin blackjack ehtoja, oletuksena tulostaa uudet korttien arvot ja kysyy mennäänkö takaisin hittiin, vai jäädäänkö tämänhetkiseen käteen
         if (playerhand.GetTotal() > 21){
-   
-            playerhand.removeAce();
+   // jostain syystä skippaa tän välillä ja menee suoraan alempaan (samaan ehtoon)
+            
+            playerhand.removeAce();    // poistaa ässän jos yli 21
             playerhand.GetTotal();
             
                 
