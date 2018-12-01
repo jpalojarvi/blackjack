@@ -1,0 +1,137 @@
+package blackjack;
+
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Mkayyee
+ */
+public class Game {
+    
+    public Deck pakka;
+    public Hand playerhand;
+    public Hand dealerhand;
+    public static boolean gamestate;
+    
+    private View view;
+    // static Scanner lukija = new Scanner(System.in);
+    
+    public String startGame() {
+        
+        pakka = new Deck();
+        String x = pakka.deal();
+        String y = pakka.deal();
+        String z = pakka.deal();
+        
+        playerhand = new Hand();
+        dealerhand = new Hand();
+        // jaetaan aloituskortit pelaajalle
+        playerhand.addHand(x);
+        playerhand.addHand(y);
+        
+        playerhand.addValue(x);
+        playerhand.addValue(y);
+        
+        // jaetaan yksi kortti jakajalle
+        dealerhand.addHand(z);
+        dealerhand.addValue(z);
+        
+        if (playerhand.GetTotal() == 21) {
+            gamestate = true;
+            return("Your hand is: "+playerhand.getHand()+", Blackjack!");
+            
+                    }
+        
+        else {
+        return("You: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() + 
+                "\n Dealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal() +
+                "\n. 1. Hit or 2. Stand ?");
+        }
+    }
+    public String Hit() {
+        if (gamestate == true){
+            return("Press enter to return to the start menu.");
+        }
+        String x = pakka.deal();
+        playerhand.addHand(x);
+        playerhand.addValue(x);
+        
+        if (playerhand.GetTotal() > 21) {
+            gamestate = true;
+            return ("Bust! Your hand: " + playerhand.getHand() + " " + playerhand.GetTotal() + ".\nPress enter to return to the start menu.");
+            
+        }
+        
+        
+        else {    
+            
+        }
+        return("You: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() + 
+                "\n Dealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal() + 
+                "\n. 1. Hit or 2. Stand ?");
+        
+    }
+    
+    public String Stand(){
+        if (dealerhand.GetTotal()>21)
+            gamestate = true;
+        
+        if (gamestate == true){
+            return("Press enter to return to the start menu.");
+        }
+
+        while (dealerhand.GetTotal()<17){
+            String y = pakka.deal();
+            dealerhand.addHand(y);
+            dealerhand.addValue(y);
+            
+        if (dealerhand.GetTotal()>=playerhand.GetTotal() && dealerhand.GetTotal()>16){
+                if (dealerhand.GetTotal()<21) {
+                    gamestate = true;
+                    return("House wins."+"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() +     
+                            "\nDealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal());
+                }
+            
+        }
+        if (dealerhand.GetTotal()==21) {
+            gamestate = true;
+            return("House wins."+"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() + 
+                    "\nDealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal()+"\nDealer has Blackjack.\nPress enter to return to the start menu.");    
+        }
+        if (dealerhand.GetTotal()>16 && dealerhand.GetTotal()<playerhand.GetTotal()){
+            gamestate = true;
+            return ("You win!" +"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() + 
+                    "\n Dealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal());
+        }
+        if (dealerhand.GetTotal()>21){
+            gamestate = true;
+            return ("You win!" +"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() + 
+                    "\nDealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal()+"\nPress enter to return to the start menu.");
+            }
+        if (dealerhand.GetTotal()==21) {
+            gamestate = true;
+            return("House wins."+"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() + 
+                   "\nDealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal()+"\nDealer has Blackjack.\nPress enter to return to the start menu."); 
+            }   
+        if (dealerhand.GetTotal()>=playerhand.GetTotal() && dealerhand.GetTotal()>16){
+                if (dealerhand.GetTotal()<21) {
+                    return("House wins."+"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() +  
+                            "\n Dealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal()+"\nPress enter to return to the start menu.");
+                }
+            }
+        if (dealerhand.GetTotal()>16){
+                if (dealerhand.GetTotal()<playerhand.GetTotal()) {
+                    gamestate = true;
+                    return ("You win!" +"\nYou: " + playerhand.getHand() + " Value: " + playerhand.GetTotal() +
+                            "\n Dealer: " + dealerhand.getHand() + " Value: " + dealerhand.GetTotal()+"\nPress enter to return to the start menu.");
+                }
+                
+            }
+        }
+            
+    return("Korttisi ovat: " + playerhand.getHand() + " korttiesi arvo on: " + playerhand.GetTotal() + 
+                        "\n Jakajan kortit ovat: " + dealerhand.getHand() + " joiden arvo on: " + dealerhand.GetTotal());     
+    }
+   
+}
