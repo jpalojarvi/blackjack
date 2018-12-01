@@ -58,17 +58,24 @@ public class Game {
         
         
         //tästä eteenpäin blackjack ehtoja, oletuksena tulostaa uudet korttien arvot ja kysyy mennäänkö takaisin hittiin, vai jäädäänkö tämänhetkiseen käteen
+        if (playerhand.GetTotal() > 21){
+   
+            playerhand.removeAce();
+            playerhand.GetTotal();
+            
+                
+        }
         
+        if (playerhand.GetTotal() == 21) {
+            gamestate = true;
+            return("Your hand is: "+playerhand.getHand()+"  Value: "+playerhand.GetTotal()+", "
+                    + "Blackjack!\nPress enter / click OK to return to the start menu.");
+        }
         if (playerhand.GetTotal() > 21) {     
             gamestate = true;
             return ("Bust! Your hand: " + playerhand.getHand() + "  Value: " + playerhand.GetTotal() + ""
                     + "\nPress enter / click OK to return to the start menu.");
             
-        }
-        if (playerhand.GetTotal() == 21) {
-            gamestate = true;
-            return("Your hand is: "+playerhand.getHand()+"  Value: "+playerhand.GetTotal()+", "
-                    + "Blackjack!\nPress enter / click OK to return to the start menu.");
         }
         else {    
             
@@ -96,7 +103,12 @@ public class Game {
             dealerhand.addHand(y);
             dealerhand.addValue(y);
             
-            
+        if (dealerhand.GetTotal() > 21)
+            if (dealerhand.GetTotal() > 21){
+                dealerhand.removeAce();    
+                dealerhand.GetTotal();
+            }
+        
         if (dealerhand.GetTotal()>=playerhand.GetTotal() && dealerhand.GetTotal()>16){
                 if (dealerhand.GetTotal()<21) {
                     gamestate = true;
