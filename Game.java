@@ -61,7 +61,7 @@ public class Game {
         if (playerhand.GetTotal() > 21){
    // jostain syystä skippaa tän välillä ja menee suoraan alempaan (samaan ehtoon)
             
-            playerhand.removeAce();    // poistaa ässän jos yli 21
+            playerhand.removeAce();    // miinustaa 10 ja muuntaa Ax:n _A:ksi jos yli 21
             playerhand.GetTotal();
             
                 
