@@ -12,9 +12,9 @@ public class Hand {
     
     int value;
     char cString;
-    private List<String> wholehand = new ArrayList();
+    private final List<String> wholehand = new ArrayList();
     int totalvalue;
-    private Deck pakka;
+    private final Deck pakka;
     
     public Hand() {
         pakka = new Deck();
@@ -88,4 +88,3 @@ public class Hand {
         return value;
     }
 }
-
