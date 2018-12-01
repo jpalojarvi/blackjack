@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blackjack;
 
 
@@ -11,7 +6,7 @@ public class Controller extends Game {
     Game state;
     Game startgame;
     
-    
+  
     public Controller() {
         
         view = new View();                  // V
@@ -53,4 +48,5 @@ public class Controller extends Game {
         Controller controller = new Controller();
         
     }
+    
 } 
