@@ -2,23 +2,19 @@ package blackjack;
 
 import javax.swing.JOptionPane;
 
-/**
- * Tämä luokka on MVC-mallin View (V) eli näyttö. Näyttö on tässä luokassa
- * toteutettu pääosin JOptionPane-avulla.
- *
- */
+
 public class View extends Game {
 
-    // tieto kontrollerista, jolle näyttö lähettää pyynnöt
+    
 
     private Controller controller;
-    
-    // metodi luo näytön, joka näytetään aluksi käyttäjälle
-    public void startMenu() {
-        String choiceStr;      // käyttäjän valinta merkkijonona
-        int choice;            // valinta numerona
 
-        // näytetään käyttäjälle päävalikko
+    
+    public void startMenu() {
+        String choiceStr;     
+        int choice;           
+
+      
         choiceStr = JOptionPane.showInputDialog(null,
                 "Welcome to Blackjack! Choose function (1-4) of the following: \n"
                 + "1: Play \n"
@@ -27,10 +23,10 @@ public class View extends Game {
                 + "4: Quit \n"
                 + "What do you want to do?");
 
-        // muutetaan käyttäjän vastaus numeroksi
+        
         choice = ConvertIntoNumeric(choiceStr);
 
-        // siirrytään käyttäjän haluamaan toimintoon
+        
         switch (choice) {
             case 1:
                 play();
@@ -39,32 +35,30 @@ public class View extends Game {
                 rules();
                 break;
             case 3:
-                // balance(); ehkä myöhemmin panos-systeemi?
+                
                 break;
             case 4:
                 quit();
                 break;
             default:
-                // näytetään valikko uudestaan, jos ei kunnollinen valinta
                 startMenu();
         }
 
     }
     
     public void play() {
-        // pyydetään käyttäjältä lisätietoa ennen kontrollerin kutsumista
-        // kontrolleri vaatii parametrina double, muutetaan se 'lennossa'.
+        
         controller.play();
     }
     
-    // näytön toimintoja
+ 
     public void showMessage(String message) {
-        // Parametrina näytettävä viesti
+      
         JOptionPane.showMessageDialog(null, message);
     }
     
     public void showQuestion(String message) {
-        // Parametrina näytettävä viesti
+        
         String choiceStr = JOptionPane.showInputDialog(message);
         int choice = ConvertIntoNumeric(choiceStr);
         switch (choice) {
@@ -114,25 +108,7 @@ public class View extends Game {
              return 0; 
           }
         }
-    /*
-    public void balance() {
-        // pyydetään kontrolleria hoitamaan toiminto, 
-        // saadaan takaisin haluttu vastaus
-        double balance = controller.balance();
-        JOptionPane.showMessageDialog(null, "Your chip balance: " + balance + "€.");
-        // siirrytään takaisin aloitusnäyttöön
-        startMenu();
-    }
-    */
-    
-    /* public void pano() {
-        // pyydetään käyttäjältä lisätietoa ennen kontrollerin kutsumista
-        String uuttaRahaa =
-                JOptionPane.showInputDialog(null, "Paljonko talletetaan?");
-        // kontrolleri vaatii parametrina double, muutetaan se 'lennossa'.
-        kontrolleri.talletus( Double.parseDouble(uuttaRahaa) );
-    }*/
-     
+   
     public void rules() {
         
         JOptionPane.showMessageDialog(null, "The idea of BlackJack is to get a larger number than your opponents. The largest number being 21, if the number goes over you bust (lose).\n"
@@ -150,8 +126,9 @@ public class View extends Game {
     
 
     public void setController(Controller ohjain) {
-        // näyttö saa tiedon kontrollerista, jolle se välittää pyyntöjä
+     
         this.controller = ohjain;
     }
+
 
 }
