@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blackjack;
 
 import java.util.ArrayList;
@@ -50,6 +45,8 @@ public class Hand {
         
         cString = card.charAt(0);
         String cardo = String.valueOf(cString);
+        GetTotal();
+        int compare = totalvalue + 11;
         
         switch (cardo) {
             case "T":
@@ -59,7 +56,10 @@ public class Hand {
                 totalvalue += 10;
                 break;
             case "A":
-                totalvalue += 11;
+                if (compare > 21)
+                    totalvalue += 1;
+                else if (compare <= 21)
+                    totalvalue += 11;
                 break;
             default:
                 totalvalue += Integer.parseInt(cardo);
@@ -79,7 +79,11 @@ public class Hand {
                 value = 10;
                 break;
             case "A":
-                value = 11;
+                if (totalvalue > 21){
+                    value = 1;
+                }
+                else
+                    value = 11;
                 break;
             default:
                 value = Integer.parseInt(dcardo);
@@ -87,4 +91,23 @@ public class Hand {
         }
         return value;
     }
+    public void removeAce(){
+        for (int i = 0 ; i < wholehand.size(); i++ ){
+            String y = wholehand.get(i);
+            String z = String.valueOf(y.charAt(0));
+            
+            String x = "A";
+            if (z.equals(x)){
+                wholehand.remove(i);
+                wholehand.add(" A");
+                totalvalue = totalvalue - 10;
+                break;
+              
+            }
+            if (!z.equals(x))
+                break;
+           
+        }
+   }
+
 }
