@@ -10,10 +10,12 @@ public class Game {
     public Hand playerhand;
     public Hand dealerhand;
     public static boolean gamestate;
+ 
     
     private View view;
     
     
+
     public String startGame() {
         
         pakka = new Deck();
@@ -61,18 +63,18 @@ public class Game {
         if (playerhand.GetTotal() > 21){
    // jostain syystä skippaa tän välillä ja menee suoraan alempaan (samaan ehtoon)
             
-            playerhand.removeAce();    // miinustaa 10 ja muuntaa Ax:n _A:ksi jos yli 21
+            playerhand.removeAce();    // miinustaa 10 ja muuntaa Ax:n Ä:ksi jos yli 21
             playerhand.GetTotal();
-            
-                
+                 
         }
+        
         
         if (playerhand.GetTotal() == 21) {
             gamestate = true;
             return("Your hand is: "+playerhand.getHand()+"  Value: "+playerhand.GetTotal()+", "
                     + "Blackjack!\nPress enter / click OK to return to the start menu.");
         }
-        if (playerhand.GetTotal() > 21) {     
+        if (playerhand.GetTotal() > 21 ) {     
             gamestate = true;
             return ("Bust! Your hand: " + playerhand.getHand() + "  Value: " + playerhand.GetTotal() + ""
                     + "\nPress enter / click OK to return to the start menu.");
@@ -104,10 +106,10 @@ public class Game {
             dealerhand.addHand(y);
             dealerhand.addValue(y);
             
-        if (dealerhand.GetTotal() > 21)
-            if (dealerhand.GetTotal() > 21){
-                dealerhand.removeAce();    
-                dealerhand.GetTotal();
+        
+        if (dealerhand.GetTotal() > 21){
+            dealerhand.removeAce();    
+            dealerhand.GetTotal();
             }
         
         if (dealerhand.GetTotal()>=playerhand.GetTotal() && dealerhand.GetTotal()>16){
@@ -125,7 +127,7 @@ public class Game {
                     + "\nPress enter / click OK to return to the start menu.");    
         }
         
-        if (dealerhand.GetTotal()>21){
+        if (dealerhand.GetTotal()>21 ){
             gamestate = true;
             return ("You win!" +"\nYou: " + playerhand.getHand() + "    Value: " + playerhand.GetTotal() + 
                     "\nDealer: " + dealerhand.getHand() + "   Value: " + dealerhand.GetTotal()+""
