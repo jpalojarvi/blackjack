@@ -28,7 +28,7 @@ public class View extends Game {
                 + "What do you want to do?");
 
         // muutetaan käyttäjän vastaus numeroksi
-        choice = Integer.parseInt(choiceStr);
+        choice = ConvertIntoNumeric(choiceStr);
 
         // siirrytään käyttäjän haluamaan toimintoon
         switch (choice) {
@@ -66,14 +66,54 @@ public class View extends Game {
     public void showQuestion(String message) {
         // Parametrina näytettävä viesti
         String choiceStr = JOptionPane.showInputDialog(message);
-        int choice = Integer.parseInt(choiceStr);
-        if (choice == 1) {
-            controller.hit();
+        int choice = ConvertIntoNumeric(choiceStr);
+        switch (choice) {
+            
+            case 0:
+                
+                Game.gamestate = false;
+                startMenu();
+                break;
+                
+            case 1:
+                
+                if (gamestate == false){
+                    controller.hit();
+                }
+                else
+                    gamestate = false;
+                    startMenu();
+                            
+                
+                break;
+                
+            case 2:
+                
+                if (gamestate == false){
+                    controller.stand();
+                }
+                else
+                    gamestate = false;
+                    startMenu();
+            
+            default:
+                Game.gamestate = false;
+                startMenu();
+                break;
         }
-        else {
-            controller.stand();
-        }
+        
     }
+    private int ConvertIntoNumeric(String xVal)
+        {
+         try
+          { 
+             return Integer.parseInt(xVal);
+          }
+         catch(Exception ex) 
+          {
+             return 0; 
+          }
+        }
     /*
     public void balance() {
         // pyydetään kontrolleria hoitamaan toiminto, 
@@ -99,6 +139,7 @@ public class View extends Game {
         + "You will be dealt two cards in the beginning and you decide whether to be \"Hit\" with a new card, or to Stand and see what the dealers hand is going to be by letting him pick cards.\n"
         + "If the Dealer has a hand of under 17 the dealer must take another card, if the dealers hand goes over 21, you win, and if its smaller you lose.\n" 
         + "In the case of a draw, the dealer always wins.");
+        startMenu();
     }
     
     public void quit() {
