@@ -56,8 +56,10 @@ public class Hand {
                 totalvalue += 10;
                 break;
             case "A":
-                if (compare > 21)
-                    totalvalue += 1;
+                if (compare > 21){
+                    removeAce();
+                    totalvalue +=11;
+                }
                 else if (compare <= 21)
                     totalvalue += 11;
                 break;
@@ -80,7 +82,7 @@ public class Hand {
                 break;
             case "A":
                 if (totalvalue > 21){
-                    value = 1;
+                    removeAce();
                 }
                 else
                     value = 11;
@@ -92,22 +94,40 @@ public class Hand {
         return value;
     }
     public void removeAce(){
-        for (int i = 0 ; i < wholehand.size(); i++ ){
-            String y = wholehand.get(i);
-            String z = String.valueOf(y.charAt(0));
+        int i=0;
+        
+        for (String search : wholehand){
             
-            String x = "A";
-            if (z.equals(x)){
-                wholehand.remove(i);
-                wholehand.add(" A");
+            if (search.contains("A")){
+                wholehand.remove(search);
+                wholehand.add(i,"Ä"+String.valueOf(search.charAt(1)));
                 totalvalue = totalvalue - 10;
                 break;
               
             }
-            if (!z.equals(x))
-                break;
-           
+            i++;
+ 
         }
+ 
+        
+        
+        
    }
-
+    public boolean checkAce(){
+        boolean checked = false;
+        for (int i = 0 ; i <= wholehand.size(); i++ ){
+            String y = wholehand.get(i);
+            String z = String.valueOf(y.charAt(0));
+            
+            if (z.equals("A")){   
+                checked = true;
+                return checked;
+            }
+            
+          
+}
+        return checked;
+           
+    }
+    
 }
