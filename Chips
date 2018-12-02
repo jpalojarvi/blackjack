@@ -1,0 +1,27 @@
+
+package Blackjack;
+
+
+public class Chips {
+    
+    
+    public int balance;
+    
+    public Chips(int alotusamount){
+        this.balance = alotusamount;
+        
+    }
+    
+    public void addChips(int amount){
+        this.balance += amount;
+    }
+    
+    public int getChips(){
+        return balance;
+    }
+    public void bet(int amount){
+        this.balance -= amount;
+    }
+    
+    
+}
