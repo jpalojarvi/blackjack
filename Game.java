@@ -1,8 +1,5 @@
 package blackjack;
 
-import java.util.Scanner;
-import javax.swing.JOptionPane;
-
 
 public class Game {
     
@@ -10,13 +7,18 @@ public class Game {
     public Hand playerhand;
     public Hand dealerhand;
     public static boolean gamestate;
+    
+    Controller kontrolla;
  
     
-    private View view;
+    public View view;
     
     
 
     public String startGame() {
+        
+    
+        
         
         pakka = new Deck();
         String x = pakka.deal();
@@ -40,6 +42,7 @@ public class Game {
         
         if (playerhand.GetTotal() == 21) {   // jos pelaaja ja suoraa blackjackin, häntä onnitellaan
             gamestate = true; 
+            Controller.win(View.winnie);
             return("Your hand is: "+playerhand.getHand()+"  Value: "+playerhand.GetTotal()+", Blackjack!"
                     + "\nPress enter / click OK to return to the start menu.");
             
@@ -63,7 +66,7 @@ public class Game {
         if (playerhand.GetTotal() > 21){
    // jostain syystä skippaa tän välillä ja menee suoraan alempaan (samaan ehtoon)
             
-            playerhand.removeAce();    // miinustaa 10 ja muuntaa Ax:n Ä:ksi jos yli 21
+            playerhand.removeAce();    // miinustaa 10 ja muuntaa Ax:n _A:ksi jos yli 21
             playerhand.GetTotal();
                  
         }
@@ -71,6 +74,7 @@ public class Game {
         
         if (playerhand.GetTotal() == 21) {
             gamestate = true;
+            Controller.win(View.winnie);
             return("Your hand is: "+playerhand.getHand()+"  Value: "+playerhand.GetTotal()+", "
                     + "Blackjack!\nPress enter / click OK to return to the start menu.");
         }
@@ -128,6 +132,7 @@ public class Game {
         }
         
         if (dealerhand.GetTotal()>21 ){
+            Controller.win(View.winnie);
             gamestate = true;
             return ("You win!" +"\nYou: " + playerhand.getHand() + "    Value: " + playerhand.GetTotal() + 
                     "\nDealer: " + dealerhand.getHand() + "   Value: " + dealerhand.GetTotal()+""
