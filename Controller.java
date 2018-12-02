@@ -1,13 +1,16 @@
 package blackjack;
 
 import Blackjack.Chips;
+import java.awt.Frame;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class Controller extends Game {
     private View view;
     Game state;
     Game startgame;
-    private static Chips chips = new Chips(1000);
+    private static Chips chips;
     int gain;
     static int balanssi;
   
@@ -16,6 +19,9 @@ public class Controller extends Game {
         view = new View();                  // V
         view.setController(this); 
         startgame = new Game();
+        String y = JOptionPane.showInputDialog("How many chips would you like to purchase?");
+        int x = Integer.parseInt(y);
+        chips = new Chips(x);
         view.startMenu();
         
         
@@ -68,7 +74,7 @@ public class Controller extends Game {
     public static void main(String[] args) {
         
         new Controller();
-        
+        JFrame freimi = new JFrame();
     }
     
 } 
