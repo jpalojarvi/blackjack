@@ -8,7 +8,8 @@ public class View extends Game {
     
 
     private Controller controller;
-
+    public static int betamount;
+    public static int winnie;
     
     public void startMenu() {
         String choiceStr;     
@@ -29,13 +30,31 @@ public class View extends Game {
         
         switch (choice) {
             case 1:
+                String bet = JOptionPane.showInputDialog("How much would you like to bet?");
+                try
+                    {
+                betamount = Integer.parseInt(bet);
+                    }
+                catch(NumberFormatException ex){
+                    showMessage("Wtf?");
+                    startMenu();
+                }
+                
+                if (Controller.chipAmount()< betamount){
+                    nogood();
+                    startMenu();
+                }
+                else{
+                    winnie = betamount*2;
+                    Controller.bet(betamount);
+                }
                 play();
                 break;
             case 2:
                 rules();
                 break;
             case 3:
-                
+                balance();
                 break;
             case 4:
                 quit();
@@ -45,11 +64,21 @@ public class View extends Game {
         }
 
     }
+    public static void nogood(){
+        JOptionPane.showMessageDialog(null, "Not enough chips.");
+        
+    }
     
     public void play() {
         
         controller.play();
     }
+    public void balance() {
+        int balance = controller.chipAmount();
+        JOptionPane.showMessageDialog(null, "Balance: " + balance);
+        startMenu();
+    }
+    
     
  
     public void showMessage(String message) {
