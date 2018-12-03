@@ -75,7 +75,7 @@ public class Controller extends Game {
     public static void main(String[] args) {
         
         new Controller();
-        JFrame freimi = new JFrame();
+        
     }
     
 } 
