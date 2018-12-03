@@ -1,26 +1,65 @@
 package blackjack;
 
+import Blackjack.Chips;
+import java.awt.Frame;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 public class Controller extends Game {
-    private final View view;
+    private View view;
     Game state;
     Game startgame;
-    
+    private static Chips chips;
+    int gain;
+    static int balanssi;
+    int x;
   
     public Controller() {
         
         view = new View();                  // V
         view.setController(this); 
         startgame = new Game();
+        String y = JOptionPane.showInputDialog("How many chips would you like to purchase?");
+        try
+        {
+            x = Integer.parseInt(y);
+        }
+        catch(NumberFormatException ex){
+            chips = new Chips(0);
+            view.startMenu();
+            
+        }
+        
+        chips = new Chips(x);
         view.startMenu();
+        
+        
         
         
                         
     }
+    public static int chipAmount(){
+        balanssi = chips.getChips();
+        return balanssi;
+        
+    }
+    
+    public int showChips(){
+        return chips.getChips();
+    }
+    
+    public static void bet(int amount){
+        chips.addChips(-amount);
+    }
+    
+    public static void win(int winnings){
+        chips.addChips(winnings);
+    }
+  
     
     
     public void play() {
-        
         view.showMessage("Starting the game!");
         String vastaus = startgame.startGame(); 
         view.showQuestion(vastaus);
@@ -40,12 +79,16 @@ public class Controller extends Game {
     public void question(String message) {
         view.showMessage(message); 
     }
+    
+    public void morechips(int chipamount) {
+        chips.morechips(chipamount);
+    }
 
     
    
     public static void main(String[] args) {
         
-        Controller controller = new Controller();
+        new Controller();
         
     }
     
