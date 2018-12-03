@@ -13,6 +13,7 @@ public class Controller extends Game {
     private static Chips chips;
     int gain;
     static int balanssi;
+    int x;
   
     public Controller() {
         
@@ -20,7 +21,16 @@ public class Controller extends Game {
         view.setController(this); 
         startgame = new Game();
         String y = JOptionPane.showInputDialog("How many chips would you like to purchase?");
-        int x = Integer.parseInt(y);
+        try
+        {
+            x = Integer.parseInt(y);
+        }
+        catch(NumberFormatException ex){
+            chips = new Chips(0);
+            view.startMenu();
+            
+        }
+        
         chips = new Chips(x);
         view.startMenu();
         
