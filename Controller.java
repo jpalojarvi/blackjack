@@ -34,6 +34,7 @@ public class Controller extends Game {
         return balanssi;
         
     }
+    
     public int showChips(){
         return chips.getChips();
     }
