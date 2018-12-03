@@ -36,7 +36,7 @@ public class View extends Game {
                 betamount = Integer.parseInt(bet);
                     }
                 catch(NumberFormatException ex){
-                    showMessage("Wtf?");
+                    showMessage("Umm?");
                     startMenu();
                 }
                 
@@ -75,9 +75,10 @@ public class View extends Game {
     }
     public void balance() {
         int balance = controller.chipAmount();
-        JOptionPane.showMessageDialog(null, "Balance: " + balance);
+        JOptionPane.showMessageDialog(null, "Balance: " + balance+" Chips.");
         startMenu();
     }
+    
     
     
  
@@ -126,7 +127,7 @@ public class View extends Game {
         }
         
     }
-    private int ConvertIntoNumeric(String xVal)
+    public int ConvertIntoNumeric(String xVal)
         {
          try
           { 
