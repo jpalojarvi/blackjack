@@ -8,7 +8,8 @@ public class View extends Game {
     
 
     private Controller controller;
-
+    public static int betamount;
+    public static int winnie;
     
     public void startMenu() {
         String choiceStr;     
@@ -20,7 +21,8 @@ public class View extends Game {
                 + "1: Play \n"
                 + "2: Show me the rules of Blackjack \n"
                 + "3: Show chip balance \n"
-                + "4: Quit \n"
+                + "4: Buy more chips \n"
+                + "5: Quit \n"
                 + "What do you want to do?");
 
         
@@ -29,15 +31,35 @@ public class View extends Game {
         
         switch (choice) {
             case 1:
+                String bet = JOptionPane.showInputDialog("How much would you like to bet?");
+                try
+                    {
+                betamount = Integer.parseInt(bet);
+                    }
+                catch(NumberFormatException ex){
+                    showMessage("Umm?");
+                    startMenu();
+                }
+                
+                if (Controller.chipAmount()< betamount){
+                    nogood();
+                    startMenu();
+                }
+                else{
+                    winnie = betamount*2;
+                    Controller.bet(betamount);
+                }
                 play();
                 break;
             case 2:
                 rules();
                 break;
             case 3:
-                
+                balance();
                 break;
             case 4:
+                morechips();
+            case 5:
                 quit();
                 break;
             default:
@@ -45,11 +67,29 @@ public class View extends Game {
         }
 
     }
+    public static void nogood(){
+        JOptionPane.showMessageDialog(null, "Not enough chips.");
+        
+    }
+    public void morechips() {
+        
+        String chipamount = JOptionPane.showInputDialog(null, "How much would you like to buy");
+        int intchips = Integer.parseInt(chipamount);
+        controller.morechips(intchips);
+        startMenu();
+    }
     
     public void play() {
         
         controller.play();
     }
+    public void balance() {
+        int balance = controller.chipAmount();
+        JOptionPane.showMessageDialog(null, "Balance: " + balance+" Chips.");
+        startMenu();
+    }
+    
+    
     
  
     public void showMessage(String message) {
@@ -97,7 +137,7 @@ public class View extends Game {
         }
         
     }
-    private int ConvertIntoNumeric(String xVal)
+    public int ConvertIntoNumeric(String xVal)
         {
          try
           { 
